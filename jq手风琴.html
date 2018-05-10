@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style:none;
+            border: 0;
+        }
+        div {
+            width: 1150px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        ul {
+            width: 1300px;
+        }
+        li {
+            width: 240px;
+            height: 400px;
+            float: left;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var bool=true;
+            console.dir($("li")[0]);
+            for(var i=0;i< $("li").length;i++){
+
+                $($("li")[i]).css({"background":"url(shoufengqin/"+(i+1)+".jpg) no-repeat"});
+            }
+
+
+
+            $("li").mouseenter(function () {
+                // if(bool){
+                    // bool=false;
+                    $(this).stop().animate({"width":800},400,"linear",function () {
+                        // bool=false;
+                    });
+                    $(this).siblings("li").stop().animate({"width":100},400,"linear",function () {
+                        // bool=true;
+                    });
+                // }
+
+            });
+            $("ul").mouseleave(function () {
+                $("ul").children("li").stop().animate({"width":240},400,"linear",function () {
+                    // bool=true;
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

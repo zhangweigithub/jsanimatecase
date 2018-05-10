@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 0;
+        }
+        .box {
+            width: 300px;
+            height: 50px;
+        }
+        ul.one {
+            width: 300px;
+            height: 50px;
+
+        }
+        ul.one>li {
+            width: 100px;
+            height: 50px;
+            float: left;
+            background-color: orange;
+        }
+        ul.one>li>a {
+            display: block;
+            width: 60px;
+            height: 50px;
+            color:black;
+            text-align: center;
+            line-height: 50px;
+            background-color: red;
+            margin:0 20px;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .one>li>ul>li {
+            display: block;
+            width: 100px;
+            height: 50px;
+            float: left;
+            background-color: orange;
+        }
+        .one>li>ul {
+            display: none;
+        }
+        .one>li>ul>li>a {
+            display: block;
+            font-size: 12px;
+            width: 60px;
+            height: 50px;
+            color:black;
+            text-align: center;
+            line-height: 50px;
+            background-color: red;
+            margin:0 20px;
+            text-decoration: none;
+        }
+
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".box>ul>li").mouseover(function () {
+                $(this).children("ul").stop().slideDown();
+            });
+            $(".box>ul>li").mouseout(function () {
+                $(this).children("ul").stop().slideUp();
+            });
+        });
+
+    </script>
+</head>
+<body>
+<div class="box">
+    <ul class="one">
+        <li>
+            <a href="javascript:;">一级菜单</a>
+            <ul>
+                <li><a href="javascript:void(0)">二级菜单</a></li>
+                <li><a href="javascript:;">二级菜单</a></li>
+                <li><a href="javascript:;">二级菜单</a></li>
+            </ul>
+        </li>
+        <li><a href="javascript:;">一级菜单</a>
+            <ul>
+                <li><a href="javascript:;">二级菜单</a></li>
+                <li><a href="javascript:;">二级菜单</a></li>
+                <li><a href="javascript:;">二级菜单</a></li>
+            </ul>
+        </li>
+        <li><a href="javascript:;">一级菜单</a>
+            <ul>
+                <li><a href="javascript:;">二级菜单</a></li>
+                <li><a href="javascript:;">二级菜单</a></li>
+                <li><a href="javascript:;">二级菜单</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

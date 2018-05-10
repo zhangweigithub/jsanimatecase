@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        .boxanimate {
+            display: none;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+        .current {
+            background-color: red;
+        }
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(function () {
+            $("button").eq(0).click(function () {
+                $(".box").addClass("current");
+            });
+            $("button").eq(1).click(function () {
+                $(".box").removeClass("current");
+            });
+            $("button").eq(2).click(function () {
+                $(".box").toggleClass("current");
+            });
+            $("button").eq(3).click(function () {
+                $(".boxanimate").show(2000,function () {
+                    console.log(1);
+                });
+            });
+            $("button").eq(4).click(function () {
+                $(".boxanimate").hide();
+            });
+            $("button").eq(5).click(function () {
+                $(".boxanimate").toggle(2000);
+            });
+        })
+
+    </script>
+</head>
+<body>
+<button>变色</button>
+<button>还原</button>
+<button>切换颜色</button>
+<button>显示</button>
+<button>隐藏</button>
+<button>切换显示</button>
+<div class="box"></div>
+<div class="boxanimate"></div>
+</body>
+</html>

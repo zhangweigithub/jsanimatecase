@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style: none;
+        }
+        body,html,.box{
+            height: 100%;
+        }
+        ul.area {
+            height: 100%;
+        }
+        ul.area li {
+            height: 100%;
+        }
+
+        ul.button {
+            width: 40px;
+            position: fixed;
+            top: 100px;
+            left: 100px;
+        }
+        ul.button li {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 40px;
+            margin-top: -1px;
+            cursor: pointer;
+
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var array=["pink","blue","yellow","orange","green"];
+            var ularea=document.getElementsByClassName("area")[0];
+            var liarea=ularea.children;
+            var ulbutton=document.getElementsByClassName("button")[0];
+            var libutton=ulbutton.children;
+            var scrolltop=0;
+            window.onscroll=function () {
+                 scrolltop=window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop;
+            }
+            for (var i=0;i<liarea.length;i++){
+                liarea[i].style.backgroundColor=array[i];
+                libutton[i].style.backgroundColor=array[i];
+                libutton[i].index=i;
+                libutton[i].onclick=function () {
+                    // console.log(ularea.offsetWidth);
+                    // console.log(this.index);
+                    animate(ularea,ularea.offsetHeight*(this.index));
+
+
+
+                }
+            }
+
+            function animate(ele,target) {
+                clearInterval(ele.timer)
+                ele.timer=setInterval(function () {
+                    var speed=(target-scrolltop)/10;
+                    if (speed>0){
+                        speed=Math.ceil(speed);
+                    }else if (speed<0){
+                        speed=Math.floor(speed);
+                    }else{
+                        speed=0;
+                    }
+                    scrolltop=scrolltop+speed;
+                    // console.log(scrolltop);
+                    window.scrollTo(0,scrolltop);
+                    if (Math.abs(target-scrolltop)<=Math.abs(speed)){
+
+                        clearInterval(ele.timer);
+                    }
+                },10);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <ul class="area">
+            <li>鞋子区域</li>
+            <li>袜子区域</li>
+            <li>裤子区域</li>
+            <li>裙子区域</li>
+            <li>帽子区域</li>
+        </ul>
+        <ul class="button">
+            <li>鞋子</li>
+            <li>袜子</li>
+            <li>裤子</li>
+            <li>裙子</li>
+            <li>帽子</li>
+        </ul>
+    </div>
+</body>
+</html>

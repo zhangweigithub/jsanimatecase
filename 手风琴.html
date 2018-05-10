@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style:none;
+            border: 0;
+        }
+        div {
+            width: 1150px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        ul {
+            width: 1300px;
+        }
+        li {
+            width: 240px;
+            height: 400px;
+            float: left;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var div=document.getElementsByTagName("div")[0];
+            var liarr=document.getElementsByTagName("li");
+            for(var i=0;i<liarr.length;i++){
+                liarr[i].style.background="url(shoufengqin/"+(i+1)+".jpg) no-repeat";
+                liarr[i].onmouseover=function (ev) {
+                    for (var i=0;i<liarr.length;i++){
+                        animate(liarr[i],{"width":100},1);
+                    }
+                    animate(this,{"width":800},1);
+                }
+            }
+
+            div.onmouseout=function () {
+                for (var i=0;i<liarr.length;i++){
+                    animate(liarr[i],{"width":240},1);
+                }
+            }
+
+
+
+
+
+
+//参数变为3个
+            function getStyle(ele,attr){
+                if(window.getComputedStyle){
+                    return window.getComputedStyle(ele,null)[attr];
+                }
+                return ele.currentStyle[attr];
+            }
+
+
+
+
+
+            function animate(ele,json,time,fn) {
+                clearInterval(ele.timer);
+                ele.timer=setInterval(function () {
+                    var bool=true;
+                    for (var k in json){
+                        var star=0;
+                        if(k==="opacity"){
+                            star=(getStyle(ele,k)*100||1);
+                        }else {
+                            star=parseInt(getStyle(ele,k)||0);
+                        }
+
+
+                        var speed=(json[k]-star)/10;
+                        if (speed>0){
+                            speed=Math.ceil(speed);
+                        }else if (speed<0){
+                            speed=Math.floor(speed);
+                        }else {
+                            speed=0;
+                        }
+
+
+                        if (k==="opacity"){
+                            ele.style[k]=(star+speed)/100;
+                            ele.style.filter="alpha(opacity="+star+")";
+                        } else if (k==="zIndex"){
+                            ele.style.zIndex=json[k];
+                        } else {
+                            ele.style[k]=star+speed+"px";
+                        }
+
+                        console.log(Math.abs((json[k] - star)) - Math.abs(speed));
+                        if (Math.abs((json[k]-star))>Math.abs(speed)+(9)){
+                            bool=false;
+                        }
+                    }
+                    if (bool){
+                        star=json[k];
+                        clearInterval(ele.timer);
+                        if (fn){
+                            fn();
+                        }
+                    }
+
+                },time);
+
+
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

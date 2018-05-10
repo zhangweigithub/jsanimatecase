@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var button=document.getElementsByTagName("input");
+            for (var i=0;i<button.length;i++){
+                button[i].onclick=f1();
+            }
+            function f1() {
+                var value=1;
+                return function f2() {
+                    this.value="赞("+(value++)+")";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="赞(0)">
+<input type="button" value="赞(0)">
+<input type="button" value="赞(0)">
+<input type="button" value="赞(0)">
+</body>
+</html>

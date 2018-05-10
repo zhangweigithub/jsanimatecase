@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: 0;
+        }
+        .box {
+            width: 300px;
+            height: 30px;
+        }
+        ul {
+            width: 300px;
+            height: 30px;
+        }
+        li {
+            width: 30px;
+            height: 30px;
+            float: left;
+            text-align: center;
+            font: 400 16px/30px simsun;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            //★
+            var li=document.getElementsByTagName("li");
+            var k,m=-1;
+            for (var i=0;i<li.length;i++){
+                li[i].index=i;
+                li[i].onmouseover=function () {
+                    // console.log(this.index);
+                    for (var j=0;j<li.length;j++){
+                        li[j].innerHTML="☆";
+                        k=this.index;
+                    }
+                    for (var s=0;s<=k;s++){
+                        li[s].innerHTML="★";
+                    }
+
+                }
+
+
+                li[i].onmouseout=function () {
+                    if(m<0){
+
+                        for (var f=0;f<li.length;f++){
+                            li[f].innerHTML="☆";
+                        }
+
+                    }else{
+                        for (var j=0;j<=m;j++){
+                            li[j].innerHTML="★";
+
+                        }
+                        for (var s=m+1;s<li.length;s++){
+                            li[s].innerHTML="☆";
+                        }
+                    }
+
+
+
+                }
+
+
+                li[i].onclick=function () {
+                    for (var j=0;j<li.length;j++){
+                        li[j].innerHTML="☆";
+                        m=this.index;
+                    }
+                    for (var s=0;s<=k;s++){
+                        li[s].innerHTML="★";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+            <li>☆</li>
+
+        </ul>
+    </div>
+</body>
+</html>

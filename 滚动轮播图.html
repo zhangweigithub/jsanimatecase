@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: 0;
+        }
+        .box {
+            width: 500px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+        }
+        .ad {
+            width: 500px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        ul {
+            width: 600%;
+            height: 200px;
+            position: absolute;
+            left: 0;
+        }
+        ul li{
+            width: 500px;
+            height: 200px;
+            float: left;
+        }
+        .current {
+            background-color: darkorange;
+        }
+        .show {
+            display: block;
+        }
+        .hidden {
+            display: none;
+        }
+        ol {
+            width: 130px;
+            height: 25px;
+            position: absolute;
+            bottom: 3px;
+            right: 3px;
+        }
+        ol li {
+            width: 20px;
+            height: 20px;
+            margin: 3px;
+            float: left;
+            color: #000;
+            background-color: #fff;
+            text-align: center;
+            line-height: 20px;
+        }
+        .arrow {
+            display: none;
+        }
+        .arrowleft {
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            width: 20px;
+            height: 40px;
+            left: 0;
+            background-color: rgba(0,0,0,.4);
+            text-align: center;
+            color: #fff;
+            font: 700 16px/40px simsun;
+        }
+        .arrowright {
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            width: 20px;
+            height: 40px;
+            right: 0;
+            background-color: rgba(0,0,0,.4);
+            text-align: center;
+            color: #fff;
+            font: 700 16px/40px simsun;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var ad=document.getElementsByClassName("ad")[0];
+            var ul=ad.children[0];
+            var ol=ad.children[1];
+            var arrow=ad.children[2];
+            var arrowleft=arrow.children[0];
+            var arrowright=arrow.children[1];
+            var newli=ul.children[0].cloneNode(true);
+            ul.appendChild(newli);
+            for (var i=0;i<ul.children.length-1;i++){
+                var olli=document.createElement("li");
+                olli.innerHTML=i+1;
+                ol.appendChild(olli);
+            }
+            var key=0,s=0;
+            ol.children[0].className="current";
+            for (var i=0;i<ol.children.length;i++){
+                ol.children[i].index=i;
+                ol.children[i].onmouseover=function () {
+                    for (var j=0;j<ol.children.length;j++){
+                        ol.children[j].className="";
+                    }
+                    this.className="current";
+                    key=s=this.index;
+                    animate(ul,-this.index*500);
+                }
+            }
+
+
+            var timer=null;
+            timer=setInterval(autoplay,1000);
+            function autoplay() {
+                key++;
+                s++;
+                if(key>ul.children.length-1){
+                    ul.style.left=0+'px';
+                    key=1;
+                }
+                animate(ul,-key*500);
+                if(s>ol.children.length-1){
+                    s=0;
+                }
+                for (var i=0;i<ol.children.length;i++){
+                    ol.children[i].className="";
+                }
+                ol.children[s].className="current";
+            }
+
+
+
+
+            ad.onmouseenter=function () {
+                arrow.className="show";
+                clearInterval(timer);
+            }
+            ad.onmouseleave=function () {
+                arrow.className="hidden";
+                timer=setInterval(autoplay,1000);
+            }
+            arrowright.onclick=function () {
+                autoplay();
+            }
+            arrowleft.onclick=function () {
+                key--;
+                s--;
+                if (key<0){
+                    ul.style.left=-5*500+"px";
+                    key=4;
+                }
+                animate(ul,-key*500);
+                if (s<0){
+                    s=4;
+                }
+                for (var i=0;i<ol.children.length;i++){
+                    ol.children[i].className="";
+                }
+                ol.children[s].className="current";
+            }
+
+
+
+            function animate(ele,target) {
+                clearInterval(ele.timer);
+               ele.timer=setInterval(function () {
+                   var speed=target-ele.offsetLeft;
+                   if(speed>0){
+                       speed=20;
+                   }else if(speed<0){
+                       speed=-20;
+                   }else {
+                       speed=0;
+                   }
+                   ele.style.left=ele.offsetLeft+speed+"px";
+                   if (ele.offsetLeft==target){
+                       ele.offsetLeft=target;
+                       clearInterval(ele.timer);
+                   }
+               },30)
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="ad">
+        <ul>
+            <li><img src="images/1.jpg" alt=""></li>
+            <li><img src="images/2.jpg" alt=""></li>
+            <li><img src="images/3.jpg" alt=""></li>
+            <li><img src="images/4.jpg" alt=""></li>
+            <li><img src="images/5.jpg" alt=""></li>
+        </ul>
+        <ol></ol>
+        <div class="arrow">
+            <div class="arrowleft"><</div>
+            <div class="arrowright">></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

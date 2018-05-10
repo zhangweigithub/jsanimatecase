@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*js中代码效果就是：hover 选中变色
+        /*li:hover {*/
+            /*background-color: red;*/
+        /*}*/
+    </style>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("li").mouseenter(function () {
+                $(this).css({"background-color":"pink"}).siblings("li").css({"background-color":"white"});
+            });
+            $("ul").mouseout(function () {
+                $(this).children("li").css({"background-color":"white"});
+            });
+
+
+        })
+    </script>
+</head>
+<body>
+<ul>
+    <li>隔行变色,索引号为：0</li>
+    <li>隔行变色,索引号为：1</li>
+    <li>隔行变色,索引号为：2</li>
+    <li>隔行变色,索引号为：3</li>
+    <li>隔行变色,索引号为：4</li>
+    <li>隔行变色,索引号为：5</li>
+    <li>隔行变色,索引号为：6</li>
+    <li>隔行变色,索引号为：7</li>
+    <li>隔行变色,索引号为：8</li>
+    <li>隔行变色,索引号为：9</li>
+</ul>
+
+</body>
+</html>

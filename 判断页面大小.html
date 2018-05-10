@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var body=document.getElementsByTagName("body")[0];
+            window.onresize=function () {
+                // var clientwidth=window.innerWidth||document.body.clientWidth||document.documentElement.clientWidth;
+                // if (clientwidth<600){
+                //     body.style.backgroundColor="red";
+                // }else {
+                //     body.style.backgroundColor="green";
+                // }
+                var screenwidth=window.screen.width;
+                console.log(window.screen);
+                if (screenwidth<600){
+                    body.style.backgroundColor="red";
+                }else {
+                    body.style.backgroundColor="green";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

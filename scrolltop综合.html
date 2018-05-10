@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .bg {
+            width: 600px;
+            height: 5000px;
+            background-color: #ccc;
+            margin: 0 auto;
+        }
+        .top {
+            width: 600px;
+            height: 200px;
+            background-color: pink;
+        }
+        .center {
+            width: 600px;
+            height: 200px;
+            background-color: darkorange;
+        }
+        .bottom {
+            width: 600px;
+            height: 4600px;
+            background-color: lightblue;
+        }
+        .adleft {
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            width: 100px;
+            height: 300px;
+            background-color: lightcoral;
+        }
+        .adright {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            width: 100px;
+            height: 300px;
+            background-color: darkgoldenrod;
+        }
+        .fixed {
+            position: fixed;
+            top: 0;
+        }
+        .arrowtotop {
+            display: none;
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            right: 20px;
+            bottom: 20px;
+            background-color: red;
+        }
+    </style>
+    <script>
+
+            window.onload=function () {
+                var boxtop=document.getElementsByClassName("top")[0];
+                var boxcenter=document.getElementsByClassName("center")[0];
+                var boxbottom=document.getElementsByClassName("bottom")[0];
+                var adleft=document.getElementsByClassName("adleft")[0];
+                var adright=document.getElementsByClassName("adright")[0];
+                var arrowtotop=document.getElementsByClassName("arrowtotop")[0];
+                window.onscroll=function () {
+                    var scrollTop=window.pageYOffset||document.body.scrollTop||document.documentElement.scrollTop;
+                    // console.log(scrollTop);
+
+                    if (scrollTop>=boxtop.offsetHeight) {
+                        boxcenter.className="center fixed";
+                        boxbottom.style.paddingTop=boxcenter.offsetHeight+"px";
+                    }else {
+                        boxcenter.className="center";
+                        boxbottom.style.paddingTop=0;
+                    }
+
+
+
+                    animate(adleft,scrollTop+80);
+                    animate(adright,scrollTop+80);
+                    function animate(ele,target) {
+                        clearInterval(ele.timer)
+                        ele.timer=setInterval(function () {
+                            var speed=(target-ele.offsetTop)/10;
+                            if (speed>0){
+                                speed=Math.ceil(speed);
+                            }else if(speed<0){
+                                speed=Math.floor(speed);
+                            }else {
+                                speed=0;
+                            }
+                            ele.style.top=ele.offsetTop+speed+"px";
+                            if (Math.abs(target-ele.offsetTop)<=Math.abs(speed)){
+                                ele.style.top=target+"px";
+                                clearInterval(ele.timer);
+                            }
+
+                        },30);
+
+                    }
+
+
+                    if (scrollTop>800){
+                        arrowtotop.style.display="block";
+
+                    }else{
+                        arrowtotop.style.display="none";
+                    }
+                    arrowtotop.onclick=function () {
+                        animatetotop();
+                    }
+                    console.log(scrollTop);
+
+                    function animatetotop(){
+                        var target=0;
+                        var time=0;
+                        clearInterval(time);
+                        time=setInterval(function () {
+                            var speed=Math.floor((target-scrollTop)/10);
+                            scrollTop=scrollTop+speed;
+                            window.scrollTo(0,scrollTop);
+                            if (scrollTop<=0){
+                                clearInterval(time);
+                            }
+                        },25)
+
+                    }
+
+                }
+
+
+
+
+            }
+
+    </script>
+</head>
+<body>
+    <div class="bg">
+        <div class="top"></div>
+        <div class="center"></div>
+        <div class="bottom"></div>
+    </div>
+    <div class="adleft"></div>
+    <div class="adright"></div>
+    <div class="arrowtotop"></div>
+</body>
+</html>

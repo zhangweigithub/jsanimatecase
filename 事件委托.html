@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    window.onload=function (ev) {
+        var button=document.getElementsByTagName("button")[0];
+        var ul=document.getElementsByTagName("ul")[0];
+        var liarr=ul.children;
+        // for (var i=0;i<liarr.length;i++){
+        //     liarr[i].onclick=function () {
+        //         alert("我是本地li")
+        //     }
+        // }
+        //
+        button.onclick=function () {
+            var newli=document.createElement("newli");
+            newli.innerHTML="我是创建li</br>";
+            ul.appendChild(newli);
+        //
+        //     //1 。创建时绑定事件
+        //     console.log(liarr.length);
+        //     for(var i=0;i<liarr.length;i++){
+        //         // console.log(i);
+        //         if(!(liarr[i].onclick)){
+        //             liarr[i].onclick = function () {
+        //                 alert("我是创建li");
+        //             }
+        //         }
+        //
+        //       }
+        //
+        //    //
+        //
+        }
+
+        //2 给ul添加点击事件
+        ul.onclick=function (event) {
+            event=window.event||event;
+                                                    //ie
+            var a=event.target?event.target:event.srcElement;
+            console.log(a.id);//对象的id
+            if(a.tagName == "LI"){
+                alert("我是li");
+            }
+
+            if(a.tagName =='NEWLI'){
+                alert("我是newli");
+            }
+
+
+        }
+    }
+</script>
+<body>
+<button>创建4个移民li</button>
+<ul>
+    <li>我是本地li</li>
+    <li>我是本地li</li>
+    <li>我是本地li</li>
+    <li>我是本地li</li>
+</ul>
+</body>
+</html>
