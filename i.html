@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			list-style:none;
+			border: 0;
+		}
+	</style>
+</head>
+<script type="text/javascript">
+	window.onload=function(){
+		var ul=document.createElement("ul");
+		for (var i=1;i<10;i++){
+            var li=document.createElement("li");
+			for (var j=1;j<=i;j++){
+
+				li.innerHTML+=j+"*"+i+"="+(i*j)+"&nbsp;";
+
+			}
+            console.log(li.innerText);
+            ul.appendChild(li);
+		}
+
+		document.body.appendChild(ul);
+	}
+</script>
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+	}
+	.box1 {
+		width: 200px;
+		height: 200px;
+		background-color: red;
+		/*padding-left: 50px;*/
+		border: 1px solid #000;
+	}
+	.box2 {
+		width: 100px;
+		height: 100px;
+		background-color: green;
+		margin-top: 50px;
+	}
+</style>
+<body>
+<div class="box1">
+	<div class="box2"></div>
+</div>
+</body>
+</html>
