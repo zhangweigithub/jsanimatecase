@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html {
+            background-color: #000;
+            overflow: hidden;
+        }
+        .sun {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: gold;
+            box-shadow: 0 0 30px 3px gold,1px 1px 30px 1px #fff;
+            border-radius: 50%;
+            background-image: radial-gradient(at 15px 15px,rgba(10,10,120,0),rgba(10,10,120,0.6));
+        }
+        .earth {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            /*background-color: blue;*/
+            border: 1px solid #222;
+            /*box-shadow: 0 0 30px 3px gold;*/
+            border-radius: 50%;
+            animation: go 5s linear infinite;
+
+        }
+        .earth::before {
+            content:"";
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: dodgerblue;
+            /*border: 1px solid #ccc;*/
+            box-shadow: 1px 1px 30px 1px dodgerblue;
+            background-image: radial-gradient(at 15px 15px,rgba(10,10,120,0),rgba(10,10,120,0.6));
+            border-radius: 50%;
+
+        }
+        .month {
+            width: 60px;
+            height:60px;
+            position: absolute;
+            left: 0%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            /*background-color: blue;*/
+            border: 1px solid #222;
+            /*box-shadow: 0 0 30px 3px gold;*/
+            border-radius: 50%;
+            animation: go 3s linear infinite;
+        }
+        .month:before {
+            content: "";
+            width: 10px;
+            height:10px;
+            position: absolute;
+            left: 0%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: #fff;
+            /*border: 1px solid #555;*/
+            /*box-shadow: 0 0 30px 3px gold;*/
+            border-radius: 50%;
+            box-shadow: 0 0 30px 3px #fff;
+            background-image: radial-gradient(at 15px 15px,rgba(360,360,360,0),rgba(360,360,360,0.6));
+        }
+        .venus {
+            width: 350px;
+            height: 350px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            /*background-color: blue;*/
+            border: 1px solid #222;
+            /*box-shadow: 0 0 30px 3px gold;*/
+            border-radius: 50%;
+            animation: go 7s linear infinite;
+        }
+        .venus::before {
+            content:"";
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: darkred;
+            /*border: 1px solid #ccc;*/
+            box-shadow: 0 0 30px 3px darkred,1px 1px 20px 1px #fff;
+            background-image: radial-gradient(at 15px 15px,rgba(10,10,120,0),rgba(10,10,120,0.6));
+            border-radius: 50%;
+        }
+        .mars {
+            width: 550px;
+            height: 550px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            /*background-color: blue;*/
+            border: 1px solid #222;
+            /*box-shadow: 0 0 30px 3px gold;*/
+            border-radius: 50%;
+            animation: go 10s linear infinite;
+        }
+        .mars::before {
+            content:"";
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: darkolivegreen;
+            /*border: 1px solid #ccc;*/
+            box-shadow:0 0 30px 3px darkolivegreen ,1px 1px 30px 1px #aaa;
+            background-image: radial-gradient(at 15px 15px,rgba(0,0,0,0),rgba(0,0,0,0.6));
+            border-radius: 50%;
+        }
+        @keyframes go {
+            from {transform:translate(-50%,-50%) rotate(0deg); }
+            to {transform:translate(-50%,-50%) rotate(360deg);  }
+
+        }
+    </style>
+</head>
+<body>
+<div class="sun">
+    <div class="earth">
+        <div class="month"></div>
+    </div>
+    <div class="venus"></div>
+    <div class="mars"></div>
+</div>
+</body>
+</html>
